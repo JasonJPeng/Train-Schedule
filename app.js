@@ -31,13 +31,30 @@ $(document).ready(function() { //  Beginning of jQuery
 
     database.ref().on("child_added", function (snapshot){
         var info = snapshot.val();
+        var nowTime = new Date();
+        var min = nowTime.getHours()*60 + nowTime.getMinutes();
+        var arrayTime = info.firstTime.split(":");
+        var min0 = parseInt(arrayTime[0]) * 60 + parseInt(arrayTime[1]);
+
+        if (min < min0) {
+            min = min +24*60;
+        }
+        var nextTrain = (min - min0) % info.freq;
+        
+        var nextTime = min + nextTrain;
+        if (nextTime > 24*60) {
+            nextTime -= 24*60;
+        }
+
+
+
         
         $("#display").append($("<tr>").append(
                  $("<td>").text(info.trainName),
                  $("<td>").text(info.dest),
                  $("<td>").text(info.freq),
-                 $("<td>").text("23:22"),
-                 $("<td>").text("23")
+                 $("<td>").text(parseInt(nextTime/60) + ":" + (nextTime % 60)),
+                 $("<td>").text(nextTrain)
         ) // end of tr 
         
         );  // end of id = diaply table
