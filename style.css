@@ -1,10 +1,57 @@
 body {
-    color: #777777;
-    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
-    font-size:12pt;
-    background-color: #ffffff; 
+    color: #333333;
+    /* font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; */
+    font-family: 'Ubuntu Mono', monospace;
+    font-size:14pt;
+    /* background-color: #ffffff;  */
+    background-image: url("sky-back.jpg");
+    background-size: cover;
+    
 }
 
 * {
     box-sizing: border-box;
+}
+
+
+
+#banner, form, table {
+    margin:5px auto 0px auto;
+    width: 600px;
+    background: #dddddd;
+    /* border: 2px solid blue; */
+}
+
+#banner{
+    font-family: 'Rubik Mono One', sans-serif;
+    text-align: center;
+    font-size: 26pt;
+    background-color: cornflowerblue;
+    color: #555555;
+    padding: 30px;
+    margin: 30px auto 0 auto;
+}
+
+
+label {
+    width: 240px;
+}
+input {
+    width: 240px;
+}
+table, form {
+    border: 2px solid cornflowerblue;
+    padding:10px;
+}
+
+th {
+    background-color: cornflowerblue;
+    color: #dddddd;
+}
+tr:hover {
+    background-color: blanchedalmond;
+}
+
+th, td {
+    padding: 0px 0px 0px 10px;
 }
