@@ -40,6 +40,20 @@ $(document).ready(function() { //  Beginning of jQuery
         })    
     }) // End of submit
 
+  // click to delete the schedule
+    $(document).on("click", ".icon-img", function () {    
+    
+       var keyValue = $(this).attr("firebase-key");
+       console.log(keyValue);
+       database.ref().child(keyValue).remove();
+
+    //    remove the row 
+       $(`#${keyValue}`).empty();
+
+    
+
+    })  
+
     database.ref().on("child_added", function (snapshot){
         console.log("===>" , snapshot.key);
         var info = snapshot.val();
@@ -63,20 +77,25 @@ $(document).ready(function() { //  Beginning of jQuery
         if (nextTime > 24*60) {
             nextTime -= 24*60;
         }
-
-
+// add fireBase Key to image firebase-key
+        var img = $('<img class="icon-img">').attr("src", "trash.png");
+        img.attr("firebase-key", snapshot.key);
 
         
-        $("#display").append($("<tr>").append(
+        var newRow = $("<tr>").append(
                  $("<td>").text(info.trainName),
                  $("<td>").text(info.dest),
                  $("<td>").text(info.freq),
                  $("<td>").text(parseInt(nextTime/60) + ":" + (nextTime % 60).toString().padStart(2, "0")),
-                 $("<td>").text(nextTrain)
-        ) // end of tr 
+                 $("<td>").text(nextTrain),
+                 $("<td>").append(img)
+        ) // end of tr        
         
-        );  // end of id = diaply table
+        // use database key as ID
+        newRow.attr("id", snapshot.key);
+        
 
+        $("#display").append(newRow);
     
     }) // end of reading database
 

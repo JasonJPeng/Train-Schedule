@@ -55,3 +55,8 @@ tr:hover {
 th, td {
     padding: 0px 0px 0px 10px;
 }
+
+.icon-img {
+    width: 20px;
+    padding:0 5px 0 0;
+}
