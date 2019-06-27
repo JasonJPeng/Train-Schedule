@@ -48,19 +48,19 @@ font-family: 'Rubik Mono One', sans-serif; -->
 <form> 
 <div>   
 <label>Train Name</label>    
-<input type="text" id = "trainName">
+<input type="text" id = "trainName" required>
 </div>
 <div>
 <label>Destination</label>
-<input type="text" id = "dest">
+<input type="text" id = "dest" required>
 </div>
 <div>
 <label>First Train Time (HH:MM)</label>
-<input type="text" id = "firstTime">
+<input type="time" id = "firstTime" required> 
 </div>
 <div>
 <label>Frequency (minutes)</label>
-<input type="text" id = "freq">
+<input type="number" id = "freq" required min="1">
 </div>
 <input type="submit" value="Add a Schedule" class="btn btn-outline-primary ">
 

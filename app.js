@@ -41,6 +41,7 @@ $(document).ready(function() { //  Beginning of jQuery
     }) // End of submit
 
     database.ref().on("child_added", function (snapshot){
+        console.log("===>" , snapshot.key);
         var info = snapshot.val();
         var nowTime = new Date();
         //1.  min as current time in min.
