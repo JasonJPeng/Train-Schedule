@@ -24,13 +24,32 @@
       // Create a variable to reference the database
   var database = firebase.database();
   
+function clearSubmit () {
+    $("#dest").val("");
+    $("#trainName").val("");
+    $("#freq").val("");
+    $("#firstTime").val("");
+}
+
 
 $(document).ready(function() { //  Beginning of jQuery
 
     console.log(database);
 
+    // **** click a submit button***
+    //
     $("form").submit(function(event) {
         event.preventDefault();
+        var fKey = $("#go").attr("firebase-key");
+        console.log(fKey);
+        if (fKey !== "") {  // Update function  
+           // delete the key and reset the button
+           
+           $("#go").attr("firebase-key", "");
+           $("#go").val("Add a Schedule")  ;    
+           database.ref().child(fKey).remove();           
+           $(`#${fKey}`).empty();            
+        }
         
         database.ref().push({
             trainName: $("#trainName").val().trim(),
@@ -38,6 +57,8 @@ $(document).ready(function() { //  Beginning of jQuery
             firstTime: $("#firstTime").val().trim(),
             freq: $("#freq").val().trim() 
         })    
+
+        clearSubmit();
     }) // End of submit
 
   // click to delete the schedule
@@ -49,10 +70,19 @@ $(document).ready(function() { //  Beginning of jQuery
 
     //    remove the row 
        $(`#${keyValue}`).empty();
-
-    
-
     })  
+
+    // Update a schedule 
+    $(document).on("click", ".icon-img-update", function () {
+        var keyValue = $(this).attr("firebase-key");
+        $("#trainName").val($(this).attr("firebase-trainName"));
+        $("#dest").val($(this).attr("firebase-dest"));
+        $("#freq").val($(this).attr("firebase-freq"));
+        $("#firstTime").val($(this).attr("firebase-firstTime"));
+        $("#go").attr("firebase-key", keyValue);
+        $("#go").val("Update This schedule");
+        
+    })
 
     database.ref().on("child_added", function (snapshot){
         console.log("===>" , snapshot.key);
@@ -80,15 +110,24 @@ $(document).ready(function() { //  Beginning of jQuery
 // add fireBase Key to image firebase-key
         var img = $('<img class="icon-img">').attr("src", "trash.png");
         img.attr("firebase-key", snapshot.key);
+        
+// also save the starting time -- firstTime in firebase-time
+        var imgUpdate = $('<img class="icon-img-update">').attr("src", "update.png");
+        imgUpdate.attr("firebase-key", snapshot.key);
+        imgUpdate.attr("firebase-dest", info.dest);
+        imgUpdate.attr("firebase-freq", info.freq);
+        imgUpdate.attr("firebase-trainName", info.trainName);
+        imgUpdate.attr("firebase-firstTime", info.firstTime);
 
         
         var newRow = $("<tr>").append(
                  $("<td>").text(info.trainName),
                  $("<td>").text(info.dest),
                  $("<td>").text(info.freq),
-                 $("<td>").text(parseInt(nextTime/60) + ":" + (nextTime % 60).toString().padStart(2, "0")),
+                 $("<td>").text(parseInt(nextTime/60).toString().padStart(2, "0") + ":" + 
+                                (nextTime % 60).toString().padStart(2, "0")),
                  $("<td>").text(nextTrain),
-                 $("<td>").append(img)
+                 $("<td>").append(imgUpdate, img)
         ) // end of tr        
         
         // use database key as ID
