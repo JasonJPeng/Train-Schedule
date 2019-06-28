@@ -4,3 +4,6 @@ It works now, with the following code:
 $(document).submit("#go", function(event) 
 
 2019-06-27 Get rid of Bootstrap grid design. Use @media. It looks much better.
+
+index-1.html No use  -- saved for sorting changes
+index-2.html No use  -- saved for responsive design
