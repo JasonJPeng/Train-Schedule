@@ -1,2 +1,5 @@
-ToDo: REQUIRED can not be inforced ??
+ToDo: REQUIRED can not be inforced 
+
+It works now, with the following code: 
+$(document).submit("#go", function(event) 
 

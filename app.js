@@ -45,13 +45,14 @@ $(document).ready(function() { //  Beginning of jQuery
     // **** click a submit button***
     //
     
-    $("#go").on("click", function(event) {
-    // $("#go").submit(function(event) {
+ 
+    // $("#go").on("click", function(event) {
+    $(document).submit("#go", function(event) {
     //  $(document).on("submit", "#go", function(event){    
         event.preventDefault();
-        $("#go").submit();
+
         var fKey = $("#go").attr("firebase-key");
-        console.log(fKey);
+        console.log("key=>", fKey);
         if (fKey !== "") {  // Update function  
            // delete the key and reset the button
            
