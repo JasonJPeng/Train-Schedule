@@ -5,22 +5,25 @@ body {
     font-size:14pt;
     /* background-color: #ffffff;  */
     background-image: url("sky-back.jpg");
-    background-size: cover;
-    
+    background-size: cover;  
 }
 
 * {
     box-sizing: border-box;
 }
 
-
-
 #banner, form, table {
     margin:5px auto 0px auto;
-    width: 600px;
+    width: 900px;
     background: #dddddd;
-    /* border: 2px solid blue; */
+    /* border: 2px solid red; */
 }
+
+@media screen and (max-width: 900px) {
+    #banner, form, table {    
+        width: 600px;   
+    }
+} 
 
 #banner{
     font-family: 'Rubik Mono One', sans-serif;

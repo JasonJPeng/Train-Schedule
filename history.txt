@@ -3,3 +3,4 @@ ToDo: REQUIRED can not be inforced
 It works now, with the following code: 
 $(document).submit("#go", function(event) 
 
+2019-06-27 Get rid of Bootstrap grid design. Use @media. It looks much better.
