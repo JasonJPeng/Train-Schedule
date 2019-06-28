@@ -29,6 +29,10 @@ function clearSubmit () {
     $("#trainName").val("");
     $("#freq").val("");
     $("#firstTime").val("");
+
+    $("#go").attr("firebase-key", "");
+    $("#go").val("Add a Schedule")  ;    
+
     $(".infoRow").css("animation-name", "").css("background-color", "");
 }
 
@@ -36,18 +40,23 @@ function clearSubmit () {
 $(document).ready(function() { //  Beginning of jQuery
 
     console.log(database);
+    clearSubmit();
 
     // **** click a submit button***
     //
+    
     $("#go").on("click", function(event) {
+    // $("#go").submit(function(event) {
+    //  $(document).on("submit", "#go", function(event){    
         event.preventDefault();
+        $("#go").submit();
         var fKey = $("#go").attr("firebase-key");
         console.log(fKey);
         if (fKey !== "") {  // Update function  
            // delete the key and reset the button
            
-           $("#go").attr("firebase-key", "");
-           $("#go").val("Add a Schedule")  ;    
+        //    $("#go").attr("firebase-key", "");
+        //    $("#go").val("Add a Schedule")  ;    
            database.ref().child(fKey).remove();           
            $(`#${fKey}`).empty();            
         }
@@ -59,7 +68,7 @@ $(document).ready(function() { //  Beginning of jQuery
             freq: $("#freq").val().trim() 
         })    
         location.reload();
-        // clearSubmit();
+        clearSubmit();
     }) // End of submit
 
   // clear the form  
@@ -84,7 +93,7 @@ $(document).ready(function() { //  Beginning of jQuery
         $("#trainName").val($(this).attr("firebase-trainName"));
         $("#dest").val($(this).attr("firebase-dest"));
         $("#freq").val($(this).attr("firebase-freq"));
-        $(".infoRow").css("color", "").css("background-color", "");
+        $(".infoRow").css("animation-name", "").css("background-color", "");
         $(`#${keyValue}`).css("animation-name", "blinker")
                          .css("background-color", "blanchedalmond");
         $("#firstTime").val($(this).attr("firebase-firstTime"));
