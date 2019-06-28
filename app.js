@@ -29,6 +29,7 @@ function clearSubmit () {
     $("#trainName").val("");
     $("#freq").val("");
     $("#firstTime").val("");
+    $(".infoRow").css("color", "").css("background-color", "");
 }
 
 
@@ -38,7 +39,7 @@ $(document).ready(function() { //  Beginning of jQuery
 
     // **** click a submit button***
     //
-    $("form").submit(function(event) {
+    $("#go").on("click", function(event) {
         event.preventDefault();
         var fKey = $("#go").attr("firebase-key");
         console.log(fKey);
@@ -61,6 +62,11 @@ $(document).ready(function() { //  Beginning of jQuery
         clearSubmit();
     }) // End of submit
 
+  // clear the form  
+  $("#clear").on("click", function () {
+      clearSubmit();
+  })
+
   // click to delete the schedule
     $(document).on("click", ".icon-img", function () {    
     
@@ -78,10 +84,11 @@ $(document).ready(function() { //  Beginning of jQuery
         $("#trainName").val($(this).attr("firebase-trainName"));
         $("#dest").val($(this).attr("firebase-dest"));
         $("#freq").val($(this).attr("firebase-freq"));
+        $(".infoRow").css("color", "").css("background-color", "");
+        $(`#${keyValue}`).css("color", "red").css("background-color", "blanchedalmond");
         $("#firstTime").val($(this).attr("firebase-firstTime"));
         $("#go").attr("firebase-key", keyValue);
-        $("#go").val("Update This schedule");
-        
+        $("#go").val("Update This Schedule");     
     })
 
     database.ref().on("child_added", function (snapshot){
@@ -132,6 +139,7 @@ $(document).ready(function() { //  Beginning of jQuery
         
         // use database key as ID
         newRow.attr("id", snapshot.key);
+        newRow.addClass("infoRow");
         
 
         $("#display").append(newRow);
