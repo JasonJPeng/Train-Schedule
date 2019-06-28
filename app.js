@@ -58,8 +58,8 @@ $(document).ready(function() { //  Beginning of jQuery
             firstTime: $("#firstTime").val().trim(),
             freq: $("#freq").val().trim() 
         })    
-
-        clearSubmit();
+        location.reload();
+        // clearSubmit();
     }) // End of submit
 
   // clear the form  
@@ -91,7 +91,8 @@ $(document).ready(function() { //  Beginning of jQuery
         $("#go").val("Update This Schedule");     
     })
 
-    database.ref().on("child_added", function (snapshot){
+    // database.ref().on("child_added", function (snapshot){
+    database.ref().orderByChild("dest").on("child_added", function (snapshot){
         console.log("===>" , snapshot.key);
         var info = snapshot.val();
         var nowTime = new Date();
