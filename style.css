@@ -60,3 +60,13 @@ th, td {
     width: 20px;
     padding:0 5px 0 0;
 }
+.infoRow {
+    animation-name: "";
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blinker {
+    from {color: red;}
+    to {color: yellow;}
+  }

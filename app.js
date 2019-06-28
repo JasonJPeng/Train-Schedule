@@ -29,7 +29,7 @@ function clearSubmit () {
     $("#trainName").val("");
     $("#freq").val("");
     $("#firstTime").val("");
-    $(".infoRow").css("color", "").css("background-color", "");
+    $(".infoRow").css("animation-name", "").css("background-color", "");
 }
 
 
@@ -85,7 +85,8 @@ $(document).ready(function() { //  Beginning of jQuery
         $("#dest").val($(this).attr("firebase-dest"));
         $("#freq").val($(this).attr("firebase-freq"));
         $(".infoRow").css("color", "").css("background-color", "");
-        $(`#${keyValue}`).css("color", "red").css("background-color", "blanchedalmond");
+        $(`#${keyValue}`).css("animation-name", "blinker")
+                         .css("background-color", "blanchedalmond");
         $("#firstTime").val($(this).attr("firebase-firstTime"));
         $("#go").attr("firebase-key", keyValue);
         $("#go").val("Update This Schedule");     
