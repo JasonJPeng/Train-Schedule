@@ -4,7 +4,7 @@ Everyone can add, edit, delete train schedules
 
 [Click Here to Test](https://jasonjpeng.github.io/Train-Schedule/)
 
-![image](screen.png)
+![image](images/screen.png)
 
 You can:
  1. add a new schedule

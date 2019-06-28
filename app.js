@@ -127,11 +127,11 @@ $(document).ready(function() { //  Beginning of jQuery
             nextTime -= 24*60;
         }
 // add fireBase Key to image firebase-key
-        var img = $('<img class="icon-img">').attr("src", "trash.png");
+        var img = $('<img class="icon-img">').attr("src", "images/trash.png");
         img.attr("firebase-key", snapshot.key);
         
 // also save the starting time -- firstTime in firebase-time
-        var imgUpdate = $('<img class="icon-img-update">').attr("src", "update.png");
+        var imgUpdate = $('<img class="icon-img-update">').attr("src", "images/update.png");
         imgUpdate.attr("firebase-key", snapshot.key);
         imgUpdate.attr("firebase-dest", info.dest);
         imgUpdate.attr("firebase-freq", info.freq);
